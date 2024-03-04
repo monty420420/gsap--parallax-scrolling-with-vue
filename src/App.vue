@@ -10,14 +10,14 @@
       ref="foreground"
       src="../public/assets/image/tree.png"
     />
-    <div class="section section-1" ref="first">
+    <div class="content first" ref="first">
       <div>
         <transition appear @before-enter="beforeLogo" @enter="afterLogo">
           <h1>the story of</h1>
         </transition>
       </div>
     </div>
-    <div class="section section-2" ref="second">
+    <div class="content second" ref="second">
       <div>
         <h2>Plot</h2>
         <p>
@@ -50,13 +50,13 @@ export default {
 
     const handleScroll = (evt) => {
       const scrollY = window.scrollY;
+      const maxBackgroundSize = 120;
+      const backgroundSize = scrollY / (maxBackgroundSize - 100);
+
       first.value.style.opacity =
         (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100;
       second.value.style.opacity =
-        (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) /
-        100;
-      const maxBackgroundSize = 120;
-      const backgroundSize = scrollY / (maxBackgroundSize - 100);
+        (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) / 100;
       background.value.style.transform =
         "scale(" + (100 + backgroundSize * 0.4) / 100 + ")";
       foreground.value.style.transform =
@@ -85,51 +85,49 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang = "scss">
 section {
   display: flex;
   justify-content: center;
   margin: 0 auto;
+  height: 260vh;
+  .background,
+  .foreground {
+    position: fixed;
+    width: 100%;
+  }
 }
-img.background,
-img.foreground {
-  position: fixed;
-  width: 100%;
-}
-.section {
-  min-height: 100vh;
-}
-.section > div {
-  position: fixed;
-  color: white;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+.content{
+  div {
+    position: fixed;
+    color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
-.section-1 {
+.first {
   margin-bottom: 500px;
-  font-size: 32px;
+  font-size: 35px;
 }
 
-.section-2 {
+.second{
   opacity: 0;
+  div {
+    color: white;
+    text-align: center;
+    padding: 50px;
+    max-width: 300px;
+    opacity: 1;
+  }
+  h2 {
+    font-size: 35px;
+    margin-bottom: 40px;
+  }
+  p {
+    line-height: 150%;
+  }
 }
 
-.section-2 div {
-  color: white;
-  text-align: center;
-  padding: 50px;
-  max-width: 300px;
-  opacity: 1;
-}
-
-.section-2 h2 {
-  font-size: 2em;
-  margin-bottom: 40px;
-}
-
-.section-2 p {
-  line-height: 150%;
-}
 </style>
