@@ -1,15 +1,7 @@
 <template>
   <section>
-    <img
-      class="background"
-      ref="background"
-      src="/assets/image/home-background.jpg"
-    />
-    <img
-      class="foreground"
-      ref="foreground"
-      src="/assets/image/tree.png"
-    />
+    <img class="background" ref="background" src="/assets/image/home-background.jpg" />
+    <img class="foreground" ref="foreground" src="/assets/image/tree.png" />
     <div class="content first" ref="first">
       <div class="box">
         <h1>the story of</h1>
@@ -30,7 +22,9 @@
         </p>
       </div>
     </div>
-    <img class="scroll" src="/assets/image/scroll.gif" alt="">
+    <button type="button" class="map-button">map</button>
+    <div class="map">dd</div>
+    <img class="scroll" src="/assets/image/scroll.gif" alt="" />
   </section>
 </template>
 
@@ -56,16 +50,14 @@ export default {
       const scrollY = window.scrollY;
       const maxBackgroundSize = 120;
       const backgroundSize = scrollY / (maxBackgroundSize - 100);
-      const backgroundOpacity = 1;
 
       first.value.style.opacity =
         (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100;
       second.value.style.opacity =
-        (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) / 100;
+        (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) /
+        100;
       background.value.style.transform =
         "scale(" + (100 + backgroundSize * 0.4) / 100 + ")";
-      // background.value.style.opacity =
-      // (100 - (scrollY + window.innerHeight - background.value.offsetHeight)) / 100;
       foreground.value.style.transform =
         "scale(" + (100 + backgroundSize * 1.5) / 100 + ")";
     };
@@ -104,7 +96,7 @@ section {
     width: 100%;
   }
 }
-.content{
+.content {
   .box {
     position: fixed;
     color: white;
@@ -116,12 +108,12 @@ section {
 
 .first {
   margin-bottom: 500px;
-  h1{
+  h1 {
     display: flex;
     justify-content: center;
     font-size: 25px;
   }
-  .logo{
+  .logo {
     width: 428px;
     height: 99px;
     background-image: url(/assets/image/home-logo.png);
@@ -130,35 +122,74 @@ section {
   }
 }
 
-.second{
+.second {
   opacity: 0;
-  div {
+  .box {
     color: white;
     text-align: center;
     padding: 50px;
     max-width: 300px;
     opacity: 1;
-  }
-  h2 {
-    font-size: 35px;
-    margin-bottom: 40px;
-  }
-  p {
-    line-height: 150%;
+    h2 {
+      font-size: 35px;
+      margin-bottom: 40px;
+    }
+    p {
+      line-height: 150%;
+    }
   }
 }
-
-.scroll{
+.map-button {
   position: fixed;
-    left: 0%;
-    top: auto;
-    right: 0%;
-    bottom: 0%;
-    z-index: 2;
-    margin-bottom: 40px;
-    margin-left: 48%;
-    width: 50px;
-    height: 50px;
+  left: -40%;
+  top: auto;
+  right: 0%;
+  bottom: 0%;
+  z-index: 2;
+  margin-bottom: 40px;
+  margin-left: 48%;
+  width: 50px;
+  height: 50px;
 }
-
+.map {
+  z-index: 2;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: gray;
+  position: absolute;
+  overflow: hidden;
+  display: none;
+  width: 100%;
+  height: 100vh;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-image: url(/assets/image/map-background.jpg);
+  background-position: 50% 50%;
+  background-size: cover;
+  -webkit-transform: scale3d(1none, 1none, 1none);
+  transform: scale3d(1none, 1none, 1none);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+.scroll {
+  position: fixed;
+  left: 0%;
+  top: auto;
+  right: 0%;
+  bottom: 0%;
+  z-index: 2;
+  margin-bottom: 40px;
+  margin-left: 48%;
+  width: 50px;
+  height: 50px;
+}
 </style>
