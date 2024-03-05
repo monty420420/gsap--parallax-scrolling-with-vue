@@ -3,22 +3,25 @@
     <img
       class="background"
       ref="background"
-      src="../public/assets/image/home-background.jpg"
+      src="/assets/image/home-background.jpg"
     />
     <img
       class="foreground"
       ref="foreground"
-      src="../public/assets/image/tree.png"
+      src="/assets/image/tree.png"
     />
     <div class="content first" ref="first">
-      <div>
+      <div class="box">
+        <h1>the story of</h1>
         <transition appear @before-enter="beforeLogo" @enter="afterLogo">
-          <h1>the story of</h1>
+          <div class="logo">
+            <span class="blind">THE GOONIES</span>
+          </div>
         </transition>
       </div>
     </div>
     <div class="content second" ref="second">
-      <div>
+      <div class="box">
         <h2>Plot</h2>
         <p>
           Facing foreclosure of their homes in the Goon Docks area of Astoria,
@@ -27,6 +30,7 @@
         </p>
       </div>
     </div>
+    <img class="scroll" src="/assets/image/scroll.gif" alt="">
   </section>
 </template>
 
@@ -52,6 +56,7 @@ export default {
       const scrollY = window.scrollY;
       const maxBackgroundSize = 120;
       const backgroundSize = scrollY / (maxBackgroundSize - 100);
+      const backgroundOpacity = 1;
 
       first.value.style.opacity =
         (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100;
@@ -59,8 +64,10 @@ export default {
         (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) / 100;
       background.value.style.transform =
         "scale(" + (100 + backgroundSize * 0.4) / 100 + ")";
+      // background.value.style.opacity =
+      // (100 - (scrollY + window.innerHeight - background.value.offsetHeight)) / 100;
       foreground.value.style.transform =
-        "scale(" + (100 + backgroundSize * 2) / 100 + ")";
+        "scale(" + (100 + backgroundSize * 1.5) / 100 + ")";
     };
     return {
       foreground,
@@ -98,7 +105,7 @@ section {
   }
 }
 .content{
-  div {
+  .box {
     position: fixed;
     color: white;
     left: 50%;
@@ -109,7 +116,18 @@ section {
 
 .first {
   margin-bottom: 500px;
-  font-size: 35px;
+  h1{
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+  }
+  .logo{
+    width: 428px;
+    height: 99px;
+    background-image: url(/assets/image/home-logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
 }
 
 .second{
@@ -128,6 +146,19 @@ section {
   p {
     line-height: 150%;
   }
+}
+
+.scroll{
+  position: fixed;
+    left: 0%;
+    top: auto;
+    right: 0%;
+    bottom: 0%;
+    z-index: 2;
+    margin-bottom: 40px;
+    margin-left: 48%;
+    width: 50px;
+    height: 50px;
 }
 
 </style>
