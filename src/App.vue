@@ -22,14 +22,14 @@
         </p>
       </div>
     </div>
-    <Map/>
+    <Map />
     <img class="scroll" src="/assets/image/scroll.gif" alt="" />
   </section>
 </template>
 
 <script>
 import { ref, onMounted, onUnmounted } from "vue";
-import Map from '../src/components/pages/map.vue'
+import Map from "../src/components/pages/map.vue";
 import gsap from "gsap";
 
 export default {
@@ -46,7 +46,7 @@ export default {
       document.removeEventListener("scroll", handleScroll);
     });
 
-    const handleScroll = (evt) => {
+    const handleScroll = () => {
       const scrollY = window.scrollY;
       const maxBackgroundSize = 120;
       const backgroundSize = scrollY / (maxBackgroundSize - 100);
@@ -54,8 +54,7 @@ export default {
       first.value.style.opacity =
         (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100;
       second.value.style.opacity =
-        (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) /
-        100;
+        (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) / 100;
       background.value.style.transform =
         "scale(" + (100 + backgroundSize * 0.4) / 100 + ")";
       foreground.value.style.transform =
