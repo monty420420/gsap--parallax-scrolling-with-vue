@@ -22,14 +22,14 @@
         </p>
       </div>
     </div>
-    <button type="button" class="map-button">map</button>
-    <div class="map">dd</div>
+    <Map/>
     <img class="scroll" src="/assets/image/scroll.gif" alt="" />
   </section>
 </template>
 
 <script>
 import { ref, onMounted, onUnmounted } from "vue";
+import Map from '../src/components/pages/map.vue'
 import gsap from "gsap";
 
 export default {
@@ -67,6 +67,9 @@ export default {
       first,
       second,
     };
+  },
+  components: {
+    Map,
   },
   methods: {
     beforeLogo(el) {
@@ -138,47 +141,6 @@ section {
       line-height: 150%;
     }
   }
-}
-.map-button {
-  position: fixed;
-  left: -40%;
-  top: auto;
-  right: 0%;
-  bottom: 0%;
-  z-index: 2;
-  margin-bottom: 40px;
-  margin-left: 48%;
-  width: 50px;
-  height: 50px;
-}
-.map {
-  z-index: 2;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: gray;
-  position: absolute;
-  overflow: hidden;
-  display: none;
-  width: 100%;
-  height: 100vh;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background-image: url(/assets/image/map-background.jpg);
-  background-position: 50% 50%;
-  background-size: cover;
-  -webkit-transform: scale3d(1none, 1none, 1none);
-  transform: scale3d(1none, 1none, 1none);
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
 }
 .scroll {
   position: fixed;
