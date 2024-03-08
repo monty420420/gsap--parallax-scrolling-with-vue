@@ -22,9 +22,9 @@
         </p>
       </div>
     </div>
-    <Map />
     <img class="scroll" src="/assets/image/scroll.gif" alt="" />
   </section>
+  <Map />
 </template>
 
 <script>
@@ -38,13 +38,6 @@ export default {
     const background = ref(null);
     const first = ref(null);
     const second = ref(null);
-
-    onMounted(() => {
-      document.addEventListener("scroll", handleScroll);
-    });
-    onUnmounted(() => {
-      document.removeEventListener("scroll", handleScroll);
-    });
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -60,6 +53,14 @@ export default {
       foreground.value.style.transform =
         "scale(" + (100 + backgroundSize * 1.5) / 100 + ")";
     };
+
+    onMounted(() => {
+      document.addEventListener("scroll", handleScroll);
+    });
+    onUnmounted(() => {
+      document.removeEventListener("scroll", handleScroll);
+    });
+
     return {
       foreground,
       background,

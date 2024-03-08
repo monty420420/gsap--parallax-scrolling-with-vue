@@ -4,9 +4,19 @@
     </button>
 </template>
 
-<style>
+<style scoped>
     button{
         outline: none;
-        background: green;
+        cursor: pointer;
+        width: 36px;
+        height: 36px;
+        border: 1px solid black;
+        border-radius: 33px;
+        color: white;
+        background: black;
     }
 </style>
+
+<script>
+</script>
+
