@@ -33,6 +33,9 @@ import Map from "../src/components/pages/map.vue";
 import gsap from "gsap";
 
 export default {
+  components: {
+    Map,
+  },
   setup() {
     const foreground = ref(null);
     const background = ref(null);
@@ -68,9 +71,7 @@ export default {
       second,
     };
   },
-  components: {
-    Map,
-  },
+
   methods: {
     beforeLogo(el) {
       el.style.opacity = "0";
