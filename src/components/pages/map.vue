@@ -16,22 +16,33 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, watchEffect } from "vue";
+<script>
+import { ref, onMounted, watch } from "vue";
 import Button from "/mun/practice/gsap-practice/src/components/element/Button.vue";
-const isModal = ref(false);
 
-onMounted(() => {
-  watchEffect(() => {
-    if (isModal.value) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  });
-});
+export default {
+  components: {
+    Button,
+  },
+  setup() {
+    const isModal = ref(false);
+
+    onMounted(() => {
+      watch(isModal, (value) => {
+        if (value) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "auto";
+        }
+      });
+    });
+
+    return {
+      isModal,
+    };
+  },
+};
 </script>
-
 <style scoped lang = "scss">
 .open-map {
   position: fixed;
@@ -61,7 +72,7 @@ onMounted(() => {
   background-image: url(/assets/image/map-background.jpg);
   background-position: 50% 50%;
   background-size: cover;
-  img {
+  .modal-background {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -71,6 +82,7 @@ onMounted(() => {
     top: 12%;
     right: 10%;
     img {
+      position: absolute;
       width: 16px;
       height: 16px;
       top: 50%;
