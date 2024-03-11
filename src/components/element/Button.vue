@@ -8,11 +8,10 @@
     button{
         outline: none;
         cursor: pointer;
-        width: 36px;
-        height: 36px;
+        width: 28px;
+        height: 28px;
         border: 1px solid black;
         border-radius: 33px;
-        color: white;
         background: black;
     }
 </style>

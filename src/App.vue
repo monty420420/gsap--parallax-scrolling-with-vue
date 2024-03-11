@@ -1,6 +1,10 @@
 <template>
   <section>
-    <img class="background" ref="background" src="/assets/image/home-background.jpg" />
+    <img
+      class="background"
+      ref="background"
+      src="/assets/image/home-background.jpg"
+    />
     <img class="foreground" ref="foreground" src="/assets/image/tree.png" />
     <div class="content first" ref="first">
       <div class="box">
@@ -23,6 +27,16 @@
       </div>
     </div>
     <img class="scroll" src="/assets/image/scroll.gif" alt="" />
+    <div class="music-wrap">
+      <Button
+        class="open-music"
+        @mouseenter="hover(true)"
+        @mouseleave="hover(false)"
+      >
+        <img class="music" src="/assets/image/music.png" alt="" />
+        <img class="music" src="/assets/image/music.png" alt="" />
+      </Button>
+    </div>
   </section>
   <Map />
 </template>
@@ -31,26 +45,31 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import Map from "../src/components/pages/map.vue";
 import gsap from "gsap";
+import Button from "/mun/practice/gsap-practice/src/components/element/Button.vue";
+
 
 export default {
   components: {
     Map,
+    Button,
   },
   setup() {
     const foreground = ref(null);
     const background = ref(null);
     const first = ref(null);
     const second = ref(null);
+    const isHover = ref(false);
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const maxBackgroundSize = 120;
       const backgroundSize = scrollY / (maxBackgroundSize - 100);
-
+      console.log(window.innerHeight);
       first.value.style.opacity =
         (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100;
       second.value.style.opacity =
-        (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) / 100;
+        (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) /
+        100;
       background.value.style.transform =
         "scale(" + (100 + backgroundSize * 0.4) / 100 + ")";
       foreground.value.style.transform =
@@ -64,11 +83,21 @@ export default {
       document.removeEventListener("scroll", handleScroll);
     });
 
+    const hover = (value) => {
+      isHover.value = value;
+      if (value) {
+        gsap.to(".open-music img", { duration: 0.1, y: "-120%" });
+      } else {
+        gsap.to(".open-music img", { duration: 0.1, y: "0%" });
+      }
+    };
+
     return {
       foreground,
       background,
       first,
       second,
+      hover,
     };
   },
 
@@ -154,5 +183,30 @@ section {
   margin-left: 48%;
   width: 50px;
   height: 50px;
+}
+.music-wrap {
+  position: fixed;
+  top: auto;
+  right: 10%;
+  bottom: 3%;
+  margin-bottom: 40px;
+  width: 28px;
+  height: 28px;
+  border: 1px solid black;
+  border-radius: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .open-music{
+    overflow: hidden;
+    img{
+      padding-top: 5px;
+      width: 16px;
+      height: 16px;
+    }
+    img:nth-child(2) {
+      padding-top: 2px;
+    }
+  }
 }
 </style>
