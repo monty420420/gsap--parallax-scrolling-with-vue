@@ -27,9 +27,11 @@
       </div>
     </div>
     <img class="scroll" src="/assets/image/scroll.gif" alt="" />
+    <div class="music-modal" ref="musicModal">The Goonies Theme Song</div>
     <div class="music-wrap">
       <Button
         class="open-music"
+        @click="toggleMusicModal"
         @mouseenter="buttonHover(true, 'open-music')"
         @mouseleave="buttonHover(false, 'open-music')"
       >
@@ -48,7 +50,6 @@ import gsap from "gsap";
 import Button from "../src/components/element/Button.vue";
 import { buttonHover } from "../src/components/common/buttonHover";
 
-
 export default {
   components: {
     Map,
@@ -59,6 +60,27 @@ export default {
     const background = ref(null);
     const first = ref(null);
     const second = ref(null);
+    const musicModal = ref(null);
+    const isMusic = ref(false);
+
+    const toggleMusicModal = () => {
+      if (isMusic.value) {
+        gsap.to(musicModal.value, { x: "400", duration: 0.5 });
+      } else {
+        gsap.to(musicModal.value, { x: "-400", duration: 0.5 });
+      }
+      isMusic.value = !isMusic.value;
+    };
+
+    onMounted(() => {
+      event.stopPropagation();
+      document.addEventListener("click", toggleMusicModal);
+    });
+
+    onUnmounted(() => {
+      event.stopPropagation();
+      document.removeEventListener("click", toggleMusicModal);
+    });
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -88,7 +110,6 @@ export default {
       el.style.transform = "translateY(70px)";
     };
 
-    // afterLogo 함수 정의
     const afterLogo = (el) => {
       gsap.to(el, {
         opacity: 1,
@@ -105,6 +126,8 @@ export default {
       buttonHover,
       beforeLogo,
       afterLogo,
+      musicModal,
+      toggleMusicModal,
     };
   },
 };
@@ -122,6 +145,7 @@ section {
     width: 100%;
   }
 }
+
 .content {
   .box {
     position: fixed;
@@ -165,6 +189,7 @@ section {
     }
   }
 }
+
 .scroll {
   position: fixed;
   left: 0%;
@@ -177,6 +202,18 @@ section {
   width: 50px;
   height: 50px;
 }
+
+.music-modal {
+  position: fixed;
+  z-index: 3;
+  width: 300px;
+  height: 166px;
+  background: white;
+  margin-right: 60px;
+  top: 65%;
+  right: -400px;
+}
+
 .music-wrap {
   position: fixed;
   top: auto;
@@ -190,9 +227,9 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  .open-music{
+  .open-music {
     overflow: hidden;
-    img{
+    img {
       padding-top: 5px;
       width: 16px;
       height: 16px;

@@ -12,18 +12,19 @@
       </Button>
     </div>
     <Teleport to="#app">
-      <div v-if="isModal" class="modal">
+      <div v-if="isModal" class="map-modal">
         <img class="modal-background" src="/assets/image/map.png" alt="" />
         <ul class="red-point">
-          <li></li>
-          <li></li>
-          <li></li>
+          <li>
+            <span class="blind">red point</span>
+          </li>
+          <li>
+            <span class="blind">red point</span>
+          </li>
+          <li>
+            <span class="blind">red point</span>
+          </li>
         </ul>
-        <!-- <ul class="desc-point">
-          <li>first area</li>
-          <li>second area</li>
-          <li>third area</li>
-        </ul> -->
         <Button
           class="close-map"
           @click="isModal = false"
@@ -94,7 +95,7 @@ export default {
     }
   }
 }
-.modal {
+.map-modal {
   z-index: 3;
   position: fixed;
   top: 50%;
