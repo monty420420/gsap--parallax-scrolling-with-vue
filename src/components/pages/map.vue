@@ -24,11 +24,16 @@
           <li>second area</li>
           <li>third area</li>
         </ul> -->
-        <Button class="close-map" @click="isModal = false">
-          <img src="/assets/image/close.png" alt="" />
-          <img src="/assets/image/close.png" alt="" />
-        </Button>
-      </div>
+          <Button
+            class="close-map"
+            @click="isModal = false"
+            @mouseenter="hover2(true)"
+            @mouseleave="hover2(false)"
+          >
+            <img src="/assets/image/close.png" alt="" />
+            <img src="/assets/image/close.png" alt="" />
+          </Button>
+        </div>
     </Teleport>
   </div>
 </template>
@@ -45,6 +50,7 @@ export default {
   setup() {
     const isModal = ref(false);
     const isHover = ref(false);
+    const isHover2 = ref(false);
 
     onMounted(() => {
       watch(isModal, (value) => {
@@ -65,9 +71,19 @@ export default {
       }
     };
 
+    const hover2 = (value) => {
+      isHover2.value = value;
+      if (value) {
+        gsap.to(".close-map img", { duration: 0.1, y: "-120%" });
+      } else {
+        gsap.to(".close-map img", { duration: 0.1, y: "0%" });
+      }
+    };
+
     return {
       isModal,
       hover,
+      hover2,
     };
   },
 };
@@ -140,16 +156,17 @@ export default {
     }
   }
   .close-map {
-    position: absolute;
+    position: fixed;
+    overflow: hidden;
     top: 12%;
     right: 10%;
     img {
-      position: absolute;
+      padding-top: 5px;
       width: 16px;
       height: 16px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    }
+    img:nth-child(2) {
+      padding-top: 2px;
     }
   }
 }

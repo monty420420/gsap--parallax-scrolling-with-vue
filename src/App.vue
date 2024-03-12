@@ -33,8 +33,8 @@
         @mouseenter="hover(true)"
         @mouseleave="hover(false)"
       >
-        <img class="music" src="/assets/image/music.png" alt="" />
-        <img class="music" src="/assets/image/music.png" alt="" />
+        <img src="/assets/image/music.png" alt="" />
+        <img src="/assets/image/music.png" alt="" />
       </Button>
     </div>
   </section>
