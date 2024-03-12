@@ -30,8 +30,8 @@
     <div class="music-wrap">
       <Button
         class="open-music"
-        @mouseenter="hover(true)"
-        @mouseleave="hover(false)"
+        @mouseenter="buttonHover(true, 'open-music')"
+        @mouseleave="buttonHover(false, 'open-music')"
       >
         <img src="/assets/image/music.png" alt="" />
         <img src="/assets/image/music.png" alt="" />
@@ -45,7 +45,8 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import Map from "../src/components/pages/map.vue";
 import gsap from "gsap";
-import Button from "/mun/practice/gsap-practice/src/components/element/Button.vue";
+import Button from "../src/components/element/Button.vue";
+import { buttonHover } from "../src/components/common/buttonHover";
 
 
 export default {
@@ -58,7 +59,6 @@ export default {
     const background = ref(null);
     const first = ref(null);
     const second = ref(null);
-    const isHover = ref(false);
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -83,13 +83,18 @@ export default {
       document.removeEventListener("scroll", handleScroll);
     });
 
-    const hover = (value) => {
-      isHover.value = value;
-      if (value) {
-        gsap.to(".open-music img", { duration: 0.1, y: "-120%" });
-      } else {
-        gsap.to(".open-music img", { duration: 0.1, y: "0%" });
-      }
+    const beforeLogo = (el) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(70px)";
+    };
+
+    // afterLogo 함수 정의
+    const afterLogo = (el) => {
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+      });
     };
 
     return {
@@ -97,22 +102,10 @@ export default {
       background,
       first,
       second,
-      hover,
+      buttonHover,
+      beforeLogo,
+      afterLogo,
     };
-  },
-
-  methods: {
-    beforeLogo(el) {
-      el.style.opacity = "0";
-      el.style.transform = "translateY(70px)";
-    },
-    afterLogo(el) {
-      gsap.to(el, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-      });
-    },
   },
 };
 </script>

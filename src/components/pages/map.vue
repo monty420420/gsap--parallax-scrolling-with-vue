@@ -4,8 +4,8 @@
       <Button
         class="open-map"
         @click="isModal = true"
-        @mouseenter="hover(true)"
-        @mouseleave="hover(false)"
+        @mouseenter="buttonHover(true, 'open-map')"
+        @mouseleave="buttonHover(false, 'open-map')"
       >
         <img src="/assets/image/scull.png" alt="" />
         <img src="/assets/image/scull.png" alt="" />
@@ -24,16 +24,16 @@
           <li>second area</li>
           <li>third area</li>
         </ul> -->
-          <Button
-            class="close-map"
-            @click="isModal = false"
-            @mouseenter="hover2(true)"
-            @mouseleave="hover2(false)"
-          >
-            <img src="/assets/image/close.png" alt="" />
-            <img src="/assets/image/close.png" alt="" />
-          </Button>
-        </div>
+        <Button
+          class="close-map"
+          @click="isModal = false"
+          @mouseenter="buttonHover(true, 'close-map')"
+          @mouseleave="buttonHover(false, 'close-map')"
+        >
+          <img src="/assets/image/close.png" alt="" />
+          <img src="/assets/image/close.png" alt="" />
+        </Button>
+      </div>
     </Teleport>
   </div>
 </template>
@@ -41,7 +41,7 @@
 <script>
 import { ref, onMounted, watch } from "vue";
 import Button from "/mun/practice/gsap-practice/src/components/element/Button.vue";
-import gsap from "gsap";
+import { buttonHover } from "../common/buttonHover";
 
 export default {
   components: {
@@ -49,8 +49,6 @@ export default {
   },
   setup() {
     const isModal = ref(false);
-    const isHover = ref(false);
-    const isHover2 = ref(false);
 
     onMounted(() => {
       watch(isModal, (value) => {
@@ -62,32 +60,14 @@ export default {
       });
     });
 
-    const hover = (value) => {
-      isHover.value = value;
-      if (value) {
-        gsap.to(".open-map img", { duration: 0.1, y: "-120%" });
-      } else {
-        gsap.to(".open-map img", { duration: 0.1, y: "0%" });
-      }
-    };
-
-    const hover2 = (value) => {
-      isHover2.value = value;
-      if (value) {
-        gsap.to(".close-map img", { duration: 0.1, y: "-120%" });
-      } else {
-        gsap.to(".close-map img", { duration: 0.1, y: "0%" });
-      }
-    };
-
     return {
       isModal,
-      hover,
-      hover2,
+      buttonHover,
     };
   },
 };
 </script>
+
 <style scoped lang="scss">
 .open-wrap {
   position: fixed;
@@ -179,4 +159,5 @@ export default {
     box-shadow: 0px 0px 0px 70px rgba(88, 0, 0, 0);
   }
 }
-</style>
+</style>import { buttonHover } from "../common/buttonHover";
+
