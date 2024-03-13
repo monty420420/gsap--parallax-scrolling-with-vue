@@ -1,10 +1,6 @@
 <template>
   <section>
-    <img
-      class="background"
-      ref="background"
-      src="/assets/image/home-background.jpg"
-    />
+    <img class="background" ref="background" src="/assets/image/home-background.jpg" />
     <img class="foreground" ref="foreground" src="/assets/image/tree.png" />
     <div class="content first" ref="first">
       <div class="box">
@@ -64,13 +60,9 @@ export default {
     const isMusic = ref(false);
 
     const toggleMusicModal = (event) => {
-      event.stopPropagation();
-      if (!event.target.closest(".open-music")) return;
-      if (isMusic.value) {
-        gsap.to(musicModal.value, { x: "400", duration: 0.5 });
-      } else {
-        gsap.to(musicModal.value, { x: "-400", duration: 0.5 });
-      }
+      if (!event.target.closest(".open-music")) return; //이벤트버블링값 리턴
+      event.stopPropagation(); //이벤트버블링 제거
+      gsap.to(musicModal.value, { x: isMusic.value ? "400" : "-400", duration: 0.5 });
       isMusic.value = !isMusic.value;
     };
 
@@ -78,15 +70,10 @@ export default {
       const scrollY = window.scrollY;
       const maxBackgroundSize = 120;
       const backgroundSize = scrollY / (maxBackgroundSize - 100);
-      console.log(window.innerHeight);
-      first.value.style.opacity =
-        (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100;
-      second.value.style.opacity =
-        (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) / 100;
-      background.value.style.transform =
-        "scale(" + (100 + backgroundSize * 0.4) / 100 + ")";
-      foreground.value.style.transform =
-        "scale(" + (100 + backgroundSize * 1.5) / 100 + ")";
+      first.value.style.opacity = (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100;
+      second.value.style.opacity = (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) / 100;
+      background.value.style.transform = `scale(${(100 + backgroundSize * 0.4) / 100})`;
+      foreground.value.style.transform = `scale(${(100 + backgroundSize * 1.5) / 100})`;
     };
 
     onMounted(() => {
@@ -105,11 +92,7 @@ export default {
     };
 
     const afterLogo = (el) => {
-      gsap.to(el, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-      });
+      gsap.to(el, { opacity: 1, y: 0, duration: 1 });
     };
 
     return {
@@ -121,7 +104,6 @@ export default {
       beforeLogo,
       afterLogo,
       musicModal,
-      toggleMusicModal,
     };
   },
 };

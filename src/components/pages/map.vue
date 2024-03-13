@@ -151,7 +151,8 @@ export default {
     }
   }
 }
-/* 키프레임 이름 = 애니메이션 이름 */
+
+//붉은점 키프레임 애니메이션
 @keyframes redSpread {
   0% {
     box-shadow: 0px 0px 0px 0px rgba(100, 0, 0, 1);
@@ -160,5 +161,5 @@ export default {
     box-shadow: 0px 0px 0px 70px rgba(88, 0, 0, 0);
   }
 }
-</style>import { buttonHover } from "../common/buttonHover";
+</style>
 
