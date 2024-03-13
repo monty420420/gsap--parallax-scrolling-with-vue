@@ -103,7 +103,7 @@ export default {
       first.value.style.opacity = (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100;
       second.value.style.opacity = (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) / 100;
       background.value.style.transform = `scale(${(100 + backgroundSize * 0.4) / 100})`;
-      foreground.value.style.transform = `scale(${(100 + backgroundSize * 1.5) / 100})`;
+      foreground.value.style.transform = `scale(${(100 + backgroundSize * 0.8) / 100})`;
     };
 
     onMounted(() => {
