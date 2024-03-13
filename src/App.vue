@@ -63,7 +63,9 @@ export default {
     const musicModal = ref(null);
     const isMusic = ref(false);
 
-    const toggleMusicModal = () => {
+    const toggleMusicModal = (event) => {
+      event.stopPropagation();
+      if (!event.target.closest(".open-music")) return;
       if (isMusic.value) {
         gsap.to(musicModal.value, { x: "400", duration: 0.5 });
       } else {
@@ -71,16 +73,6 @@ export default {
       }
       isMusic.value = !isMusic.value;
     };
-
-    onMounted(() => {
-      event.stopPropagation();
-      document.addEventListener("click", toggleMusicModal);
-    });
-
-    onUnmounted(() => {
-      event.stopPropagation();
-      document.removeEventListener("click", toggleMusicModal);
-    });
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -90,8 +82,7 @@ export default {
       first.value.style.opacity =
         (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100;
       second.value.style.opacity =
-        (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) /
-        100;
+        (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) / 100;
       background.value.style.transform =
         "scale(" + (100 + backgroundSize * 0.4) / 100 + ")";
       foreground.value.style.transform =
@@ -99,9 +90,12 @@ export default {
     };
 
     onMounted(() => {
+      document.addEventListener("click", toggleMusicModal);
       document.addEventListener("scroll", handleScroll);
     });
+
     onUnmounted(() => {
+      document.removeEventListener("click", toggleMusicModal);
       document.removeEventListener("scroll", handleScroll);
     });
 
