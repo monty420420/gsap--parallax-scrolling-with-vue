@@ -10,8 +10,8 @@
         cursor: pointer;
         width: 28px;
         height: 28px;
-        border: 1px solid black;
         border-radius: 33px;
+        border: 1px solid black;
         background: black;
     }
 </style>
