@@ -41,8 +41,8 @@
 
 <script>
 import { ref, onMounted, watch } from "vue";
-import Button from "/mun/practice/gsap-practice/src/components/element/Button.vue";
-import { buttonHover } from "../common/buttonHover";
+import Button from "@/components/element/Button.vue";
+import { buttonHover } from "@/components/common/buttonHover";
 
 export default {
   components: {

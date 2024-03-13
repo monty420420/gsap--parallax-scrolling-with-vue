@@ -41,10 +41,10 @@
 
 <script>
 import { ref, onMounted, onUnmounted } from "vue";
-import Map from "../src/components/pages/map.vue";
+import Map from "@/components/pages/map.vue";
 import gsap from "gsap";
-import Button from "../src/components/element/Button.vue";
-import { buttonHover } from "../src/components/common/buttonHover";
+import Button from "@/components/element/Button.vue";
+import { buttonHover } from "@/components/common/buttonHover";
 
 export default {
   components: {
