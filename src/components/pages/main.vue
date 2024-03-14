@@ -1,6 +1,10 @@
 <template>
   <section>
-    <img class="background" ref="background" src="/assets/image/home-background.jpg" />
+    <img
+      class="background"
+      ref="background"
+      src="/assets/image/home-background.jpg"
+    />
     <img class="foreground" ref="foreground" src="/assets/image/tree.png" />
     <div class="content first" ref="first">
       <div class="box">
@@ -24,9 +28,9 @@
     </div>
     <img class="scroll" src="/assets/image/scroll.gif" alt="" />
     <div class="music-modal" ref="musicModal">
-      <h2>{{ currentMusic.title }}</h2>
+      <h2>title : "{{ currentMusic.title }}"</h2>
       <audio ref="audioPlayer" :src="currentMusic.url"></audio>
-      <Button @click="togglePlay">{{ isPlaying ? 'Pause' : 'Play' }}</Button>
+      <Button @click="togglePlay">{{ isPlaying ? "Pause" : "Play" }}</Button>
     </div>
     <div class="music-wrap">
       <Button
@@ -61,8 +65,11 @@ export default {
     const musicModal = ref(null);
     const isMusic = ref(false);
     const isPlaying = ref(false);
-    const playlist = [  //노래리스트 배열
-      { title: 'The Goonies Theme Song', url: '/assets/music/inspiring.mp3' }
+    //노래리스트 배열
+    const playlist = [
+      { title: "place", url: "/assets/music/place.mp3" },
+      { title: "color", url: "/assets/music/color.mp3" },
+      { title: "inspiring", url: "/assets/music/inspiring.mp3" },
     ];
 
     const currentMusic = computed(() => playlist[0]);
@@ -81,7 +88,10 @@ export default {
     const toggleMusicModal = (event) => {
       if (!event.target.closest(".open-music")) return; //이벤트버블링값 리턴
       event.stopPropagation(); //이벤트버블링 제거
-      gsap.to(musicModal.value, { x: isMusic.value ? "400" : "-400", duration: 0.5 });
+      gsap.to(musicModal.value, {
+        x: isMusic.value ? "400" : "-400",
+        duration: 0.5,
+      });
       isMusic.value = !isMusic.value;
       stopMusic();
     };
@@ -98,12 +108,14 @@ export default {
      */
     const handleScroll = () => {
       const scrollY = window.scrollY; //현재 수직으로 스크롤 된 값
-      const maxBackgroundSize = 120;  //최고 확대될수있는값
+      const maxBackgroundSize = 120; //최고 확대될수있는값
       const backgroundSize = scrollY / (maxBackgroundSize - 100);
-      first.value.style.opacity = (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100;
-      second.value.style.opacity = (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) / 100;
-      background.value.style.transform = `scale(${(100 + backgroundSize * 0.4) / 100})`;
-      foreground.value.style.transform = `scale(${(100 + backgroundSize * 0.8) / 100})`;
+      first.value.style.opacity =
+        (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100;
+      second.value.style.opacity =
+        (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) / 100;
+      background.value.style.transform = `scale(${ (100 + backgroundSize * 0.4) / 100 })`;
+      foreground.value.style.transform = `scale(${ (100 + backgroundSize * 0.8) / 100 })`;
     };
 
     onMounted(() => {
