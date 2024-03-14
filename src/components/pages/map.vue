@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="open-wrap">
+    <div class="map-wrap">
       <Button
         class="open-map"
         @click="(isModal = true)"
@@ -50,6 +50,7 @@ export default {
   },
   setup() {
     const isModal = ref(false);
+    const pointVisible = ref(0);
 
     onMounted(() => {
       watch(isModal, (value) => {
@@ -61,10 +62,8 @@ export default {
       });
     });
 
-    const pointVisible = ref(0);
-
     const togglePoint = (index) => {
-      if( pointVisible.value != index ){
+      if( pointVisible.value != index && pointVisible.value < 2 ){
         ++pointVisible.value;
       }
     };
@@ -78,4 +77,3 @@ export default {
   },
 };
 </script>
-

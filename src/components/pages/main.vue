@@ -1,10 +1,6 @@
 <template>
   <section>
-    <img
-      class="background"
-      ref="background"
-      src="/assets/image/home-background.jpg"
-    />
+    <img class="background" ref="background" src="/assets/image/home-background.jpg" />
     <img class="foreground" ref="foreground" src="/assets/image/tree.png" />
     <div class="content first" ref="first">
       <div class="box">
@@ -47,7 +43,7 @@
 </template>
 <script>
 import { ref, onMounted, onUnmounted, computed } from "vue";
-import Map from "@/components/pages/map.vue";
+import Map from "@/components/pages/Map.vue";
 import gsap from "gsap";
 import Button from "@/components/element/Button.vue";
 import { buttonHover } from "@/components/common/buttonHover";
@@ -156,4 +152,3 @@ export default {
   },
 };
 </script>
-
