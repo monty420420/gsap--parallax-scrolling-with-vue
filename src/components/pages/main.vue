@@ -51,10 +51,8 @@ export default {
       const scrollY = window.scrollY; //현재 수직으로 스크롤 된 값
       const maxBackgroundSize = 120; //최고 확대될수있는값
       const backgroundSize = scrollY / (maxBackgroundSize - 100);
-      first.value.style.opacity =
-        (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100;
-      second.value.style.opacity =
-        (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) / 100;
+      first.value.style.opacity = (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100;
+      second.value.style.opacity = (100 + (scrollY + window.innerHeight - second.value.offsetHeight)) / 100;
       background.value.style.transform = `scale(${ (100 + backgroundSize * 0.4) / 100 })`;
       foreground.value.style.transform = `scale(${ (100 + backgroundSize * 0.8) / 100 })`;
     };

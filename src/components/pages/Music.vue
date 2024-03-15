@@ -15,9 +15,7 @@
     <div class="music-function">
       <audio ref="audioPlayer" :src="currentMusic.url"></audio>
       <Button class="prev-btn" @click="prevMusic">prev</Button>
-      <Button class="play-btn" @click="togglePlay">{{
-        isPlaying ? "Pause" : "Play"
-      }}</Button>
+      <Button class="play-btn" @click="togglePlay">{{ isPlaying ? "Pause" : "Play" }}</Button>
       <Button class="next-btn" @click="nextMusic">next</Button>
     </div>
   </div>
