@@ -52,14 +52,60 @@
     li:nth-of-type(1) {
       top: 48%;
       left: 48%;
+      &:hover {
+        &::before {
+          content: "To move on, play the tune... as each note is said";
+          width: 100px;
+          height: auto;
+          position: absolute;
+          top: -140px;
+          left: 20px;
+          background-color: black;
+          color: #925b18;
+          border-radius: 5px;
+          padding: 20px;
+          animation: fade 0.5s ease-in-out;
+        }
+      }
     }
     li:nth-of-type(2) {
       top: 20%;
       left: 20%;
+      &:hover {
+        &::before {
+          content: "To move on, play the tune... as each note is said";
+          width: 150px;
+          height: auto;
+          position: absolute;
+          top: -140px;
+          left: 20px;
+          background-color: black;
+          color: #925b18;
+          border-radius: 5px;
+          padding: 20px;
+          animation: fade 0.5s ease-in-out;
+        }
+      }
     }
     li:nth-of-type(3) {
       top: 22%;
       left: 78%;
+      &:hover {
+        &::before {
+          content: "Dead";
+          width: auto;
+          height: auto;
+          position: absolute;
+          top: -50px;
+          left: 20px;
+          background-color: black;
+          color: #925b18;
+          border-radius: 5px;
+          padding: 20px;
+          animation: fade 0.5s ease-in-out;
+        }
+
+      }
     }
   }
   .close-map {
@@ -75,6 +121,15 @@
     img:nth-child(2) {
       padding-top: 2px;
     }
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
