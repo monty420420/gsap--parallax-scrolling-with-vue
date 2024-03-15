@@ -4,8 +4,8 @@
       <Button
         class="open-map"
         @click="(isModal = true)"
-        @mouseenter="buttonHover(true, 'open-map')"
-        @mouseleave="buttonHover(false, 'open-map')"
+        @mouseenter="buttonHover(true, 'open-map' , 0.3, '-120%')"
+        @mouseleave="buttonHover(false, 'open-map' , 0.3 , '0%')"
       >
         <img src="/assets/image/scull.png" alt="" />
         <img src="/assets/image/scull.png" alt="" />
@@ -28,8 +28,8 @@
         <Button
           class="close-map"
           @click="isModal = false"
-          @mouseenter="buttonHover(true, 'close-map')"
-          @mouseleave="buttonHover(false, 'close-map')"
+          @mouseenter="buttonHover(true, 'close-map' , 0.3, '-120%')"
+          @mouseleave="buttonHover(false, 'close-map' , 0.3 , '0%')"
         >
           <img src="/assets/image/close.png" alt="" />
           <img src="/assets/image/close.png" alt="" />

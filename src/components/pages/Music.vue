@@ -1,19 +1,23 @@
 <template>
-  <div class="music-modal" ref="musicModal">
-    <Button @click="togglePlay">{{ isPlaying ? "Pause" : "Play" }}</Button>
-    <h2>제목 : "{{ currentMusic.title }}"</h2>
-    <audio ref="audioPlayer" :src="currentMusic.url"></audio>
-  </div>
   <div class="music-wrap">
     <Button
       class="open-music"
       @click="toggleMusicModal"
-      @mouseenter="buttonHover(true, 'open-music')"
-      @mouseleave="buttonHover(false, 'open-music')"
+      @mouseenter="buttonHover(true, 'open-music' , 0.3, '-120%')"
+      @mouseleave="buttonHover(false, 'open-music' , 0.3 , '0%')"
     >
       <img src="/assets/image/music.png" alt="" />
       <img src="/assets/image/music.png" alt="" />
     </Button>
+  </div>
+  <div class="music-modal" ref="musicModal">
+    <h2>노래제목 : "{{ currentMusic.title }}"</h2>
+    <div class="music-function">
+      <audio ref="audioPlayer" :src="currentMusic.url"></audio>
+      <Button class="prev-btn">prev</Button>
+      <Button class="play-btn" @click="togglePlay">{{ isPlaying ? "Pause" : "Play" }}</Button>
+      <Button class="next-btn">next</Button>
+    </div>
   </div>
 </template>
 
@@ -23,7 +27,7 @@ import Button from "@/components/element/Button.vue";
 import { buttonHover } from "@/components/common/buttonHover";
 import gsap from "gsap";
 export default {
-    components: {
+  components: {
     Button,
   },
   setup() {

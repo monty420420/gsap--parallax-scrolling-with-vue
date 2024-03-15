@@ -1,26 +1,3 @@
-.music-modal {
-  position: fixed;
-  display: flex;
-  z-index: 3;
-  width: 300px;
-  height: 166px;
-  background: white;
-  margin-right: 60px;
-  border-radius: 5px;
-  top: 65%;
-  right: -400px;
-  padding: 10px;
-  button {
-    background: black;
-    color: white;
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
-  }
-  h2{
-  margin-top: 12px;
-  }
-}
 .music-wrap {
   position: fixed;
   top: auto;
@@ -44,4 +21,41 @@
       padding-top: 2px;
     }
   }
+}
+.music-modal {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  width: 300px;
+  height: 166px;
+  background: white;
+  margin-right: 60px;
+  border-radius: 5px;
+  top: 65%;
+  right: -400px;
+  padding: 10px;
+  h2 {
+    margin-bottom: 30px;
+  }
+}
+.music-function {
+  button {
+    color: white;
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+    border: none;
+  }
+}
+.play-btn {
+  background: black;
+}
+.prev-btn {
+  background: gray;
+}
+.next-btn {
+  background: gray;
 }
