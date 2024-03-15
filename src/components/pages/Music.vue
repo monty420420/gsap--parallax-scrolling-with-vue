@@ -12,6 +12,7 @@
   </div>
   <div class="music-modal" ref="musicModal">
     <h2>노래제목 : "{{ currentMusic.title }}"</h2>
+    <strong>play버튼 클릭시 노래가 실행됩니다.</strong>
     <div class="music-function">
       <audio ref="audioPlayer" :src="currentMusic.url"></audio>
       <Button class="prev-btn" @click="prevMusic">prev</Button>

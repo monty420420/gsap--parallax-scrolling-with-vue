@@ -54,11 +54,11 @@
       left: 48%;
       &:hover {
         &::before {
-          content: "To move on, play the tune... as each note is said";
-          width: 150px;
-          height: 60px;
+          content: "이 지점을 클릭하세요";
+          width: 160px;
+          height: 20px;
           position: absolute;
-          top: -140px;
+          top: -60px;
           left: 20px;
           background-color: black;
           color: #925b18;
@@ -73,12 +73,12 @@
       left: 20%;
       &:hover {
         &::before {
-          content: "To move on, play the tune... as each note is said";
-          width: 150px;
-          height: 60px;
+          content: "클릭시 마지막 지점의 위치가 표시됩니다";
+          width: 160px;
+          height: 40px;
           position: absolute;
-          top: -120px;
-          left: 20px;
+          top: 0px;
+          left: 40px;
           background-color: black;
           color: #925b18;
           border-radius: 5px;
@@ -149,12 +149,12 @@
   0% {
     opacity: 0;
     width: 0;
-    height: 60px;
+    height: 20px;
   }
   100% {
     opacity: 1;
-    width: 150px;
-    height: 60px;
+    width: 160px;
+    height: 20px;
   }
 }
 
