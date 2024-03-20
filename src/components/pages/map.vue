@@ -52,6 +52,7 @@ export default {
     const isModal = ref(false);
     const pointVisible = ref(0);
 
+    //모달
     onMounted(() => {
       watch(isModal, (value) => {
         if (value) {
@@ -62,6 +63,7 @@ export default {
       });
     });
 
+    //다음 포인트로 넘어가기
     const togglePoint = (index) => {
       if( pointVisible.value != index && pointVisible.value < 2 ){
         ++pointVisible.value;
