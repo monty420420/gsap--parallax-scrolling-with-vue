@@ -1,1 +1,1 @@
-https://gsap-parallax-scrolling-with-vue.vercel.app/
+url:  https://gsap-parallax-scrolling-with-vue.vercel.app/
